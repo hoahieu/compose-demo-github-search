@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Demo proj 2</string>
+    <string name="error_general">Something wrong happened!</string>
+    <string name="list_search_label">Search users</string>
+    <string name="list_search_suggest">Enter something to search</string>
+    <string name="list_empty">Empty list</string>
+    <string name="detail_name">Name</string>
+    <string name="detail_id">ID</string>
+    <string name="detail_url">URL</string>
+    <string name="detail_company">Company</string>
+    <string name="detail_email">Email</string>
+    <string name="detail_bio">Bio</string>
+</resources>
