@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -71,6 +72,7 @@ class SearchViewModel(
         viewModelScope.launch {
             _queryFlow
                 .debounce(QUERY_DEBOUNCE_TIME)
+                .distinctUntilChanged()
                 .collect(::searchUser)
         }
     }

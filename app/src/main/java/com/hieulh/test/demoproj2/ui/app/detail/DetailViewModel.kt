@@ -9,6 +9,7 @@ import com.hieulh.test.demoproj2.domain.pojo.UserDetail
 import com.hieulh.test.demoproj2.domain.usecase.GetUserDetailUseCase
 import com.hieulh.test.demoproj2.ui.pojo.UserDetailUIModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -18,7 +19,7 @@ class DetailViewModel(
     private val getUserDetailUseCase: GetUserDetailUseCase,
     private val userDetailUIMapper: (UserDetail) -> UserDetailUIModel
 ) : ViewModel() {
-    private val _userDetailFlow = MutableSharedFlow<DataState<UserDetail>>(replay = 1)
+    private val _userDetailFlow = MutableStateFlow<DataState<UserDetail>>(DataState.Loading())
     val userDetailFlow = _userDetailFlow.map { it.mapData(userDetailUIMapper) }
 
     fun getUserDetail(username: String) {

@@ -16,6 +16,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -34,10 +35,13 @@ import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun DetailScreen(detailViewModel: DetailViewModel, username: String, navController: NavController) {
     val userDetailState = detailViewModel.userDetailFlow.collectAsState(initial = DataState.Loading())
-    LaunchedEffect(Unit) {
+    LaunchedEffect(userDetailState) {
         detailViewModel.getUserDetail(username)
     }
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(16.dp)) {
         userDetailState.value.run {
             when (this) {
                 is DataState.Loading -> showLoading()
